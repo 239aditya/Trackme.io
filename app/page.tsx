@@ -335,14 +335,14 @@ export default function DashboardPage() {
               <form onSubmit={handleQuickLog} className="space-y-4">
                 {/* Minutes + Quick Presets */}
                 <div>
-                  <div className="flex items-center justify-between mb-1">
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 mb-1.5">
                     <label
                       htmlFor="minutes"
                       className="text-xs font-mono font-medium text-stone-700 dark:text-stone-300"
                     >
                       Duration (Minutes)
                     </label>
-                    <div className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-1.5 flex-wrap">
                       {[30, 45, 60, 90, 120].map((preset) => (
                         <button
                           key={preset}
