@@ -83,101 +83,120 @@ alter table project_progress enable row level security;
 alter table study_logs enable row level security;
 
 -- Curriculum tables: Read-only for authenticated users
+drop policy if exists "Authenticated users can read weeks" on weeks;
 create policy "Authenticated users can read weeks"
   on weeks for select
   to authenticated
   using (true);
 
+drop policy if exists "Authenticated users can read starter_sessions" on starter_sessions;
 create policy "Authenticated users can read starter_sessions"
   on starter_sessions for select
   to authenticated
   using (true);
 
+drop policy if exists "Authenticated users can read projects" on projects;
 create policy "Authenticated users can read projects"
   on projects for select
   to authenticated
   using (true);
 
 -- Progress tables: User can only select/insert/update/delete their own rows
+drop policy if exists "Users can select own week_progress" on week_progress;
 create policy "Users can select own week_progress"
   on week_progress for select
   to authenticated
   using (user_id = auth.uid());
 
+drop policy if exists "Users can insert own week_progress" on week_progress;
 create policy "Users can insert own week_progress"
   on week_progress for insert
   to authenticated
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can update own week_progress" on week_progress;
 create policy "Users can update own week_progress"
   on week_progress for update
   to authenticated
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can delete own week_progress" on week_progress;
 create policy "Users can delete own week_progress"
   on week_progress for delete
   to authenticated
   using (user_id = auth.uid());
 
+drop policy if exists "Users can select own session_progress" on session_progress;
 create policy "Users can select own session_progress"
   on session_progress for select
   to authenticated
   using (user_id = auth.uid());
 
+drop policy if exists "Users can insert own session_progress" on session_progress;
 create policy "Users can insert own session_progress"
   on session_progress for insert
   to authenticated
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can update own session_progress" on session_progress;
 create policy "Users can update own session_progress"
   on session_progress for update
   to authenticated
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can delete own session_progress" on session_progress;
 create policy "Users can delete own session_progress"
   on session_progress for delete
   to authenticated
   using (user_id = auth.uid());
 
+drop policy if exists "Users can select own project_progress" on project_progress;
 create policy "Users can select own project_progress"
   on project_progress for select
   to authenticated
   using (user_id = auth.uid());
 
+drop policy if exists "Users can insert own project_progress" on project_progress;
 create policy "Users can insert own project_progress"
   on project_progress for insert
   to authenticated
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can update own project_progress" on project_progress;
 create policy "Users can update own project_progress"
   on project_progress for update
   to authenticated
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can delete own project_progress" on project_progress;
 create policy "Users can delete own project_progress"
   on project_progress for delete
   to authenticated
   using (user_id = auth.uid());
 
+drop policy if exists "Users can select own study_logs" on study_logs;
 create policy "Users can select own study_logs"
   on study_logs for select
   to authenticated
   using (user_id = auth.uid());
 
+drop policy if exists "Users can insert own study_logs" on study_logs;
 create policy "Users can insert own study_logs"
   on study_logs for insert
   to authenticated
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can update own study_logs" on study_logs;
 create policy "Users can update own study_logs"
   on study_logs for update
   to authenticated
   using (user_id = auth.uid())
   with check (user_id = auth.uid());
 
+drop policy if exists "Users can delete own study_logs" on study_logs;
 create policy "Users can delete own study_logs"
   on study_logs for delete
   to authenticated
